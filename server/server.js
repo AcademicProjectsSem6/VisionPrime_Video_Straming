@@ -6,7 +6,7 @@ const cors = require("cors");
 const path = require("path");
 
 // Only use HTTPS when started via start-https.js (so "npm start" is always HTTP)
-// On Render you should use HTTP behind Render's TLS proxy.
+// On Render should use HTTP behind Render's TLS proxy.
 const startedViaHttpsScript =
   require.main && path.basename(require.main.filename) === "start-https.js";
 
@@ -25,12 +25,12 @@ const useHttpsForReal = startedViaHttpsScript;
 
 const app = express();
 
-// Render sits behind a proxy (TLS termination). This helps if you ever check req.secure etc.
+// Render sits behind a proxy (TLS termination). 
 app.set("trust proxy", 1);
 
 // ——— CORS ———
 // For quick testing we keep "*" (works for most Socket.IO setups without credentials).
-// If you later need credentials/cookies, set an explicit origin instead of "*".
+// If  later need credentials/cookies, set an explicit origin instead of "*".
 app.use(cors());
 app.use(express.json());
 
@@ -238,7 +238,7 @@ server
     const scheme = useHttpsForReal ? "https" : "http";
     console.log(`Server running on port ${PORT} (${useHttpsForReal ? "HTTPS" : "HTTP"})`);
 
-    // On Render your public URL will be https://<your-service>.onrender.com
+    // On Render  public URL will be https://<your-service>.onrender.com
     console.log(`Local: ${scheme}://localhost:${PORT}`);
   })
   .on("error", (err) => {
